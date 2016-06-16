@@ -1,0 +1,14 @@
+= render_breadcrumbs
+
+%article.partnerProductItemShow
+  %header  
+    %h2= @partner_product.title_ru
+    %h3= @partner.name_ru
+    %h1.heading
+      = @item.title_ru
+
+  .partnerProductItemShow-content
+    %p= raw @item.description_ru
+
+%nav.partnerProductItemShow-toUpLink
+  = link_to 'Наверх', '#top'

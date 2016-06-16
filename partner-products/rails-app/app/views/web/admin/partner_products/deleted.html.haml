@@ -1,0 +1,23 @@
+.page-header
+  %h1 Список удаленных партнерских продуктов
+%table.table.table-striped
+  %thead
+    %tr
+      %th ИД
+      %th Партнер
+      %th Наименование
+      %th Описание
+      %th Операции 
+  %tbody
+    - @deleted_partner_products.each do |deleted|
+      %tr
+        %td= deleted.id
+        %td= deleted.partner.name_ru
+        %td= deleted.title_ru
+        %td= deleted.description_ru
+        %td
+          = link_to 'Восстановить', restore_admin_partner_product_path(deleted), method: :post,
+              class:  'btn btn-mini'
+
+= link_to 'Вернуться', admin_partner_products_path, class: 'btn'
+

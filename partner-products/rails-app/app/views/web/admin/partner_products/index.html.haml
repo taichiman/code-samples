@@ -1,0 +1,15 @@
+.page-header
+  %h1 Продукция партнеров
+= form_tag '', autocomplete: 'off' do
+  = label 'partner_product_type_id', 'Тип продукции'
+  = select_tag 'partner_product_type_id', 
+      options_from_collection_for_select(@partner_product_types, 'id', 'title_ru', @pp_type.id),
+      onchange: 'update_partner_products_list_div(this.value)', autocomplete: 'off'
+%hr
+#partner_products_list
+  = render partial: 'partner_products'
+
+  = link_to 'Добавить', new_admin_partner_product_path, class: 'btn btn-primary'
+  - if @pp_type.persisted?
+    = link_to 'Архивная продукция партнеров', deleted_by_type_admin_partner_products_path(@pp_type), class: 'btn'
+

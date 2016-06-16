@@ -1,0 +1,39 @@
+.page-header
+  %h2 Каталог товаров партнера
+
+.partner_product_item_list
+  .partner_product_parent_info
+    %p
+      Тип продукции: 
+      = link_to "#{@pp.partner_product_type.title_ru}", admin_partner_products_path 
+    %p
+      Партнер: #{@pp.partner.name_ru}
+    %p
+      Продукция: #{@pp.title_ru}
+    %br
+
+  .ppi_items
+    %table.table.table-striped
+      %thead
+        %tr
+          %th ИД
+          %th Название
+          %th Вид
+          %th Тизер
+          %th Операции
+      %tbody.sortable{data: {update_url: mass_update_order_at_api_partner_product_items_path}} 
+        - @ppis.each do |element|
+          %tr{data: {id: element.id}}
+            %td= element.id
+            %td= element.title_ru
+            %td.item_image= image_tag element.image.url(:d120x120) unless element.image.blank?
+            %td= sanitize(truncate(element.tizer_ru, length: 500, separator: ' '))
+            %td
+              .btn-group.btn-group-vertical
+                = link_to 'Править', admin_pp_item_edit_path(element), class: 'btn btn-mini'
+                = link_to 'Удалить', admin_pp_item_destroy_path(element), method: :delete, 
+                  data: {confirm: 'Серьезно?'}, class: 'btn btn-mini btn-danger'
+
+    = link_to 'Добавить', new_admin_partner_product_partner_product_item_path(@pp), class: 'btn btn-primary'
+    = link_to 'Архивные товары', deleted_admin_partner_product_partner_product_items_path(@pp), class: 'btn'
+

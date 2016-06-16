@@ -1,0 +1,7 @@
+= render partial: 'partner_products'
+
+= link_to 'Добавить', new_admin_partner_product_path, class: 'btn btn-primary'
+- if @pp_type.persisted?
+  = link_to 'Архивная продукция партнеров', deleted_by_type_admin_partner_products_path(@pp_type), class: 'btn'
+
+

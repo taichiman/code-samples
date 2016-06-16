@@ -1,0 +1,21 @@
+.page-header
+  %h1 Список удаленных партнеров
+%table.table.table-striped
+  %thead
+    %tr
+      %th ИД
+      %th Наименование
+      %th Дата удаления
+      %th Операции
+  %tbody
+    - @partners.each do |partner|
+      %tr
+        %td= partner.id
+        %td= partner.name_ru
+        %td=l partner.deleted_at
+        %td
+          = link_to 'Восстановить', restore_admin_partner_path(partner), method: :post, class: 'btn btn-mini'
+=link_to 'Вернуться', admin_partners_path, class: 'btn'
+
+
+        

@@ -1,0 +1,24 @@
+.page-header
+  %h1 Типы продукции партнеров
+%table.table.table-striped
+  %thead
+    %tr
+      %th ИД
+      %th Название
+      %th Подзаголовок
+      %th Операции
+  %tbody.sortable{data: {update_url: mass_update_order_at_api_partner_product_types_path}} 
+    - @pp_types.each do |pp_type|
+      %tr{data: {id: pp_type.id}}
+        %td= pp_type.id
+        %td= pp_type.title_ru
+        %td= pp_type.subtitle_ru
+        %td
+          .btn-group.btn-group-vertical
+            = link_to 'Править', edit_admin_partner_product_type_path(pp_type), class: 'btn btn-mini'
+            = link_to 'Удалить', admin_partner_product_type_path(pp_type), method: :delete, 
+              data: {confirm: 'Серьезно?'}, class: 'btn btn-mini btn-danger'
+     
+= link_to 'Добавить', new_admin_partner_product_type_path, class: 'btn btn-primary'
+= link_to 'Архивные типы', deleted_admin_partner_product_types_path, class: 'btn'
+

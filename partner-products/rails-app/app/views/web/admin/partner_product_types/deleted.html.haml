@@ -1,0 +1,22 @@
+.page-header
+  %h1 Список удаленных типов
+%table.table.table-striped
+  %thead
+    %tr
+      %th ИД
+      %th Название
+      %th Подзаголовок
+      %th Дата удаления
+      %th Операции
+  %tbody
+    - @pp_types.each do |pp_type|
+      %tr
+        %td= pp_type.id
+        %td= pp_type.title_ru
+        %td= pp_type.subtitle_ru
+        %td= l pp_type.deleted_at
+        %td
+          = link_to 'Восстановить', restore_admin_partner_product_type_path(pp_type), method: :post, class: 'btn btn-mini'
+
+= link_to 'Вернуться', admin_partner_product_types_path, class: 'btn'
+

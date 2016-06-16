@@ -1,0 +1,17 @@
+.partner_products_by_type_item
+  .partner_logo
+    = image_tag partner_product.partner.logo.url(:d230x120) unless partner_product.partner.logo.blank? 
+  .partner_product_description
+    .partner_name
+      %h2= partner_product.partner.name_ru
+    .partner_description
+      = raw partner_product.partner.description_ru
+    
+    .partner_product
+      .product_title
+        %h2= partner_product.title_ru
+      .product_subtitle
+        = raw partner_product.subtitle_ru
+    %p.more
+      = link_to 'Подробное описание', partner_product_path(partner_product)
+

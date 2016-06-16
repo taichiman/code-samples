@@ -1,0 +1,27 @@
+= simple_form_for [:admin, @partner_product], :html => { :class => 'form-horizontal' } do |f|
+  %ul{class:"nav nav-tabs"}
+    %li
+      %a{href:"#RU", data: {toggle:"tab"} } RU
+
+  .tab-content
+    #RU.tab-pane.active
+      = f.association :partner_product_type, collection: @partner_product_types, label_method: :title_ru
+      = f.association :partner, collection: @partners, label_method: :name_ru
+      %hr
+
+      .control-group
+        = f.input :title_ru
+
+      .control-group
+        = f.hint t 'simple_form.hints.partner_product.subtitle_ru'
+        = f.label :subtitle_ru
+        = f.cktext_area :subtitle_ru
+
+      .control-group
+        = f.label :description_ru
+        = f.cktext_area :description_ru
+
+  .form-actions
+    = f.button :submit, class: 'btn-primary'
+    = link_to 'Отменить', admin_partner_products_path, class: 'btn'
+

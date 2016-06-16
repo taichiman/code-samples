@@ -1,0 +1,10 @@
+.ppt_item
+  .ppt_column_logo
+    = link_to partner_product_type_path(partner_product_type) do
+      = image_tag partner_product_type.picture.url(:d300x220) unless partner_product_type.picture.blank?
+    %div
+      %p= partner_product_type.title_ru
+  .ppt_column_subtitle
+    %p= partner_product_type.subtitle_ru
+  
+

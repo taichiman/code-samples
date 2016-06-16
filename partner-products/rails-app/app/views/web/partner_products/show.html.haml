@@ -1,0 +1,17 @@
+=render_breadcrumbs
+
+.partnerProductView
+  %section.partnerProductView-header
+    %header.partnerProductView-productCategories
+      %h1.heading= @partner_product.partner_product_type.title_ru
+      %h2= @partner_product.partner.name_ru
+
+    .partnerProductView-productDescription
+      = raw @partner_product.description_ru
+ 
+  - pp_items = @partner_product.partner_product_items.active
+  - if pp_items.any?
+    %section.partnerProductView-catalog
+      .partnerProductView-list
+        = render partial: 'item', collection: pp_items
+

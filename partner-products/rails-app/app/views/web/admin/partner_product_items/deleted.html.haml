@@ -1,0 +1,31 @@
+.page-header
+  %h1 Список удаленных товаров
+
+.partner_product_parent_info
+  %p
+    Тип продукции: 
+    = link_to "#{@pp.partner_product_type.title_ru}", admin_partner_products_path 
+  %p
+    Партнер: #{@pp.partner.name_ru}
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th ИД
+      %th Название
+      %th Тизер
+      %th Дата удаления
+      %th Операции
+  %tbody
+    - @ppis.each do |el|
+      %tr
+        %td= el.id
+        %td= el.title_ru
+        %td= el.tizer_ru
+        %td= l el.deleted_at
+        %td
+          = link_to 'Восстановить', restore_admin_partner_product_partner_product_item_path(@pp, el), 
+            method: :post, class: 'btn btn-mini btn-success'
+
+= link_to 'Вернуться', admin_partner_product_partner_product_items_path(@pp), class: 'btn'
+

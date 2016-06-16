@@ -1,0 +1,18 @@
+- more = partner_product_item_path(item)
+
+%article.partnerProductView-productItem
+  .partnerProductView-itemTitle
+    = link_to more do
+      %h3= item.title_ru
+  .partnerProductView-itemPicture
+    = link_to more, title: 'Подробное описание' do
+      = image_tag(item.image.url(:d342x300), size:'342x300') unless item.image.blank? 
+  .partnerProductView-itemTizer
+    .partnerProductView-itemTizer-text
+      = raw item.tizer_ru
+      .partnerProductView-itemTizer-moreLink
+        = link_to more do
+          Подробное описание
+%br
+
+.clear

@@ -1,0 +1,18 @@
+= simple_form_for [:admin, @pp_type], :html => { :class => 'form-horizontal' } do |f|
+  %fieldset
+    = f.input :picture
+    = image_tag(@pp_type.picture.url(:d100x100)) unless @pp_type.picture.blank?
+  %ul{class:"nav nav-tabs"}
+    %li
+      %a{href:"#RU", data: {toggle:"tab"}} RU
+
+  .tab-content
+    #RU.tab-pane.active
+      = f.input :title_ru, input_html: {class: 'span8'} 
+      = f.input :subtitle_ru, input_html: {class: 'span8', rows: 10} 
+      = f.label :description_ru
+      = f.cktext_area :description_ru
+
+  .form-actions
+    = f.button :submit, class: 'btn-primary'
+    = link_to 'Отменить', admin_partner_product_types_path, class: 'btn'
